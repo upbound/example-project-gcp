@@ -6,21 +6,21 @@ from .model.io.upbound.gcp.storage.bucketacl import v1beta1 as aclv1beta1
 from .model.com.example.platform.xstoragebucket import v1alpha1
 
 def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
-    observedXR = v1alpha1.XStorageBucket(**req.observed.composite.resource)
-    xrName = observedXR.metadata.name
-    bucketName = xrName + "-bucket"
+    observed_xr = v1alpha1.XStorageBucket(**req.observed.composite.resource)
+    xr_name = observed_xr.metadata.name
+    bucket_name = xr_name + "-bucket"
 
     bucket = bucketv1beta1.Bucket(
         apiVersion="storage.gcp.upbound.io/v1beta1",
         kind="Bucket",
         metadata=metav1.ObjectMeta(
-            name=bucketName,
+            name=bucket_name,
         ),
         spec=bucketv1beta1.Spec(
             forProvider=bucketv1beta1.ForProvider(
-                location=observedXR.spec.location,
+                location=observed_xr.spec.location,
                 versioning=[bucketv1beta1.VersioningItem(
-                    enabled=observedXR.spec.versioning,
+                    enabled=observed_xr.spec.versioning,
                 )],
             ),
         ),
@@ -31,14 +31,14 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
         apiVersion="storage.gcp.upbound.io/v1beta1",
         kind="BucketACL",
         metadata=metav1.ObjectMeta(
-            name=xrName + "-acl",
+            name=xr_name + "-acl",
         ),
         spec=aclv1beta1.Spec(
             forProvider=aclv1beta1.ForProvider(
                 bucketRef=aclv1beta1.BucketRef(
-                    name=bucketName,
+                    name=bucket_name,
                 ),
-                predefinedAcl=observedXR.spec.acl,
+                predefinedAcl=observed_xr.spec.acl,
             ),
         ),
     )
