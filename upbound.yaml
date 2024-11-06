@@ -5,7 +5,7 @@ metadata:
 spec:
   dependsOn:
   - provider: xpkg.upbound.io/upbound/provider-gcp-storage
-    version: v1.8.3
+    version: '>=v1.9.0'
   - function: xpkg.upbound.io/crossplane-contrib/function-auto-ready
     version: '>=v0.0.0'
   description: This is where you can describe your project.
@@ -14,4 +14,4 @@ spec:
   readme: |
     This is where you can add a readme for your project.
   repository: xpkg.upbound.io/upbound/example-project-gcp
-  source: github.com/upbound/project-template
+  source: github.com/upbound/example-project-gcp
