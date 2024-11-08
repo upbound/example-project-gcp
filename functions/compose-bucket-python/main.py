@@ -28,6 +28,7 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
 
     # Return early if Crossplane hasn't observed the bucket yet. This means it
     # hasn't been created yet. This function will be called again after it is.
+    # We want the bucket to be created so we can refer to its external name.
     if "bucket" not in req.observed.resources:
         return
 
