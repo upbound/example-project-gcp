@@ -1,4 +1,4 @@
-# example-project-aws
+# example-project-gcp
 
 An example Upbound control plane project for Google Cloud Platform (GCP).
 
