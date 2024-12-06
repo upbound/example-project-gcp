@@ -1,9 +1,8 @@
 import models.io.upbound.gcp.storage.v1beta1
+import models.com.example.platform.v1alpha1.xstoragebucket as xstoragebucketv1alpha1
 
-oxr = option("params").oxr # observed composite resource
-params = oxr.spec.parameters
-
-bucketName = "{}-bucket".format(oxr.metadata.name)
+oxr = xstoragebucketv1alpha1.XStorageBucket{**option("params").oxr} # observed composite resource
+bucketName = "{}-bucket".format(oxr.metadata.name.lower())
 
 _metadata = lambda name: str -> any {
   {
@@ -19,10 +18,10 @@ _items: [any] = [
         metadata: _metadata(bucketName)
         spec = {
             forProvider = {
-                location = params.location
+                location = oxr.spec.parameters.location
                 versioning = [
                     {
-                        enabled = params.versioning
+                        enabled = oxr.spec.parameters.versioning
                     }
                 ]
             }
@@ -35,7 +34,7 @@ _items: [any] = [
                 bucketRef = {
                     name = bucketName
                 }
-                predefinedAcl = params.acl
+                predefinedAcl = oxr.spec.parameters.acl
             }
         }
     }
