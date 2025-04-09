@@ -1,9 +1,11 @@
 apiVersion: platform.example.com/v1alpha1
-kind: StorageBucket
+kind: XStorageBucket
 metadata:
-  name: example
-  namespace: default
+  name: example-python
 spec:
+  compositionSelector:
+    matchLabels:
+      language: python
   parameters:
     location: US
     versioning: true

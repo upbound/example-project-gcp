@@ -28,7 +28,7 @@ _items: [any] = [
         }
     },
     v1beta1.BucketACL{
-        metadata: _metadata("{}-encryption".format(oxr.metadata.name))
+        metadata: _metadata("{}-acl".format(oxr.metadata.name))
         spec = {
             forProvider = {
                 bucketRef = {
