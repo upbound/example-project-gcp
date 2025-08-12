@@ -1,5 +1,11 @@
 # example-project-gcp
 
+> [!IMPORTANT]
+>
+> This repository is no longer maintained. An equivalent Upbound project
+> template is available at
+> [upbound/project-template-gcp-storage](https://github.com/upbound/project-template-gcp-storage).
+
 An example Upbound control plane project for Google Cloud Platform (GCP).
 
 A control plane project is a source-level representation of a Crossplane control
